@@ -14,12 +14,14 @@ import org.appcelerator.titanium.TiContext;
 
 import android.app.Activity;
 
+import com.socialize.config.SocializeConfig;
 import com.socialize.ui.SocializeUI;
 
 @Kroll.module(name="Socialize", id="com.socialize")
 public class SocializeModule extends KrollModule
 {
 	private String entityKey;
+	
 	private SocializeActionBarViewProxy actionBar;
 
 	// You can define constants with @Kroll.constant, for example:
@@ -49,6 +51,16 @@ public class SocializeModule extends KrollModule
 	@Kroll.setProperty
 	public void setEntityKey(String entityKey) {
 		this.entityKey = entityKey;
+	}
+
+	@Kroll.setProperty
+	public void setConsumerKey(String consumerKey) {
+		Socialize.getSocialize().getConfig().setProperty(SocializeConfig.SOCIALIZE_CONSUMER_KEY, consumerKey);
+	}
+
+	@Kroll.setProperty
+	public void setConsumerSecret(String consumerSecret) {
+		Socialize.getSocialize().getConfig().setProperty(SocializeConfig.SOCIALIZE_CONSUMER_SECRET, consumerSecret);
 	}
 	
 }

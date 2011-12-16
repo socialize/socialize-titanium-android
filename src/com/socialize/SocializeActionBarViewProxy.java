@@ -9,6 +9,7 @@ import android.app.Activity;
 public class SocializeActionBarViewProxy extends TiViewProxy {
 	
 	private String entityKey;
+	
 	private SocializeActionBarView view;
 
 	public SocializeActionBarViewProxy(TiContext tiContext, String entityKey) {
