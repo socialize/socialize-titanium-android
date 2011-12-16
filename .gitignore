@@ -1,6 +1,7 @@
 tmp
 bin
 build
+dist
 *.zip
 .apt_generated
 .classpath
