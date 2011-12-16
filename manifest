@@ -3,10 +3,9 @@
 # during compilation, packaging, distribution, etc.
 #
 version: 0.1
-description: My module
-author: Your Name
-license: Specify your license
-copyright: Copyright (c) 2011 by Your Company
+description: Socialize SDK for Titanium
+author: Socialize Inc.
+copyright: Copyright (c) 2011 Socialize Inc.
 
 
 # these should not be edited

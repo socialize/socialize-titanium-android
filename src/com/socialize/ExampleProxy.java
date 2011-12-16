@@ -11,10 +11,8 @@ package com.socialize;
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.KrollProxy;
 import org.appcelerator.kroll.annotations.Kroll;
-
 import org.appcelerator.titanium.TiContext;
 import org.appcelerator.titanium.util.Log;
-import org.appcelerator.titanium.util.TiConfig;
 
 // This proxy can be created by calling Socialize.createExample({message: "hello world"})
 @Kroll.proxy(creatableInModule=SocializeModule.class)
@@ -22,7 +20,6 @@ public class ExampleProxy extends KrollProxy
 {
 	// Standard Debugging variables
 	private static final String LCAT = "ExampleProxy";
-	private static final boolean DBG = TiConfig.LOGD;
 	
 	// Constructor
 	public ExampleProxy(TiContext tiContext) {

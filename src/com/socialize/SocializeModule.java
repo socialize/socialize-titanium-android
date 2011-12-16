@@ -10,18 +10,17 @@ package com.socialize;
 
 import org.appcelerator.kroll.KrollModule;
 import org.appcelerator.kroll.annotations.Kroll;
-
 import org.appcelerator.titanium.TiContext;
-import org.appcelerator.titanium.util.Log;
-import org.appcelerator.titanium.util.TiConfig;
+
+import android.app.Activity;
+
+import com.socialize.ui.SocializeUI;
 
 @Kroll.module(name="Socialize", id="com.socialize")
 public class SocializeModule extends KrollModule
 {
-
-	// Standard Debugging variables
-	private static final String LCAT = "SocializeModule";
-	private static final boolean DBG = TiConfig.LOGD;
+	private String entityKey;
+	private SocializeActionBarViewProxy actionBar;
 
 	// You can define constants with @Kroll.constant, for example:
 	// @Kroll.constant public static final String EXTERNAL_NAME = value;
@@ -29,25 +28,27 @@ public class SocializeModule extends KrollModule
 	public SocializeModule(TiContext tiContext) {
 		super(tiContext);
 	}
-
-	// Methods
+	
 	@Kroll.method
-	public String example() {
-		Log.d(LCAT, "example called");
-		return "hello world";
+	public SocializeActionBarViewProxy createActionBar(String entityKey) {
+		actionBar = new SocializeActionBarViewProxy(getTiContext(), entityKey);
+		return actionBar;
 	}
 	
-	// Properties
-	@Kroll.getProperty
-	public String getExampleProp() {
-		Log.d(LCAT, "get example property");
-		return "hello world";
-	}
-	
-	
-	@Kroll.setProperty
-	public void setExampleProp(String value) {
-		Log.d(LCAT, "set example property: " + value);
+	@Override
+	public void onDestroy(Activity activity) {
+		SocializeUI.getInstance().destroy(activity);
+		super.onDestroy(activity);
 	}
 
+	@Kroll.getProperty
+	public String getEntityKey() {
+		return entityKey;
+	}
+
+	@Kroll.setProperty
+	public void setEntityKey(String entityKey) {
+		this.entityKey = entityKey;
+	}
+	
 }
