@@ -11,15 +11,17 @@ public class SocializeActionBarViewProxy extends TiViewProxy {
 	private String entityKey;
 	
 	private SocializeActionBarView view;
+	private TiViewProxy parent;
 
-	public SocializeActionBarViewProxy(TiContext tiContext, String entityKey) {
+	public SocializeActionBarViewProxy(TiContext tiContext, TiViewProxy parent, String entityKey) {
 		super(tiContext);
 		this.entityKey = entityKey;
+		this.parent = parent;
 	}
 
 	@Override
 	public TiUIView createView(Activity activity) {
-		view = new SocializeActionBarView(this, activity, entityKey);
+		view = new SocializeActionBarView(this, parent, activity, entityKey);
 		return view;
 	}
 
@@ -29,11 +31,5 @@ public class SocializeActionBarViewProxy extends TiViewProxy {
 
 	public void setEntityKey(String entityKey) {
 		this.entityKey = entityKey;
-	}
-	
-	public void refresh() {
-		if(view != null) {
-			view.refresh();
-		}
 	}
 }

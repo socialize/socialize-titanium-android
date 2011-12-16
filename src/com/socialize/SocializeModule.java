@@ -11,30 +11,22 @@ package com.socialize;
 import org.appcelerator.kroll.KrollModule;
 import org.appcelerator.kroll.annotations.Kroll;
 import org.appcelerator.titanium.TiContext;
+import org.appcelerator.titanium.proxy.TiViewProxy;
 
 import android.app.Activity;
 
-import com.socialize.config.SocializeConfig;
 import com.socialize.ui.SocializeUI;
 
 @Kroll.module(name="Socialize", id="com.socialize")
 public class SocializeModule extends KrollModule
 {
-	private String entityKey;
-	
-	private SocializeActionBarViewProxy actionBar;
-
-	// You can define constants with @Kroll.constant, for example:
-	// @Kroll.constant public static final String EXTERNAL_NAME = value;
-	
 	public SocializeModule(TiContext tiContext) {
 		super(tiContext);
 	}
 	
 	@Kroll.method
-	public SocializeActionBarViewProxy createActionBar(String entityKey) {
-		actionBar = new SocializeActionBarViewProxy(getTiContext(), entityKey);
-		return actionBar;
+	public SocializeActionBarViewProxy showActionBar(TiViewProxy parent, String entityKey) {
+		return new SocializeActionBarViewProxy(getTiContext(), parent, entityKey);
 	}
 	
 	@Override
@@ -43,24 +35,8 @@ public class SocializeModule extends KrollModule
 		super.onDestroy(activity);
 	}
 
-	@Kroll.getProperty
-	public String getEntityKey() {
-		return entityKey;
+	@Kroll.method
+	public void setSocializeCredentials(String consumerKey, String consumerSecret) {
+		SocializeUI.getInstance().setSocializeCredentials(consumerKey, consumerSecret);
 	}
-
-	@Kroll.setProperty
-	public void setEntityKey(String entityKey) {
-		this.entityKey = entityKey;
-	}
-
-	@Kroll.setProperty
-	public void setConsumerKey(String consumerKey) {
-		Socialize.getSocialize().getConfig().setProperty(SocializeConfig.SOCIALIZE_CONSUMER_KEY, consumerKey);
-	}
-
-	@Kroll.setProperty
-	public void setConsumerSecret(String consumerSecret) {
-		Socialize.getSocialize().getConfig().setProperty(SocializeConfig.SOCIALIZE_CONSUMER_SECRET, consumerSecret);
-	}
-	
 }

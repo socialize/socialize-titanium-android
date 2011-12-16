@@ -4,33 +4,29 @@ import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.titanium.proxy.TiViewProxy;
 import org.appcelerator.titanium.view.TiUIView;
 
-import com.socialize.ui.actionbar.ActionBarView;
-
 import android.app.Activity;
+import android.view.View;
+
+import com.socialize.ui.SocializeUI;
 
 public class SocializeActionBarView extends TiUIView {
 	
 	private Activity activity;
 	private String entityKey;
-	private ActionBarView view;
+	private View view;
+	private TiUIView parent;
 
-	public SocializeActionBarView(TiViewProxy proxy, Activity activity, String entityKey) {
+	public SocializeActionBarView(TiViewProxy proxy, TiViewProxy parent, Activity activity, String entityKey) {
 		super(proxy);
 		this.activity = activity;
 		this.entityKey = entityKey;
+		this.parent = parent.getView(activity);
 	}
 
 	@Override
 	public void processProperties(KrollDict dict) {
 		super.processProperties(dict);
-		view = new ActionBarView(activity);
-		view.setEntityKey(entityKey);
+		view = SocializeUI.getInstance().showActionBar(activity, parent.getNativeView(), entityKey);
 		setNativeView(view);
-	}
-	
-	public void refresh() {
-		if(view != null) {
-			view.refresh();
-		}
 	}
 }
