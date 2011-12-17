@@ -39,4 +39,9 @@ public class SocializeModule extends KrollModule
 	public void setSocializeCredentials(String consumerKey, String consumerSecret) {
 		SocializeUI.getInstance().setSocializeCredentials(consumerKey, consumerSecret);
 	}
+	
+	@Kroll.method
+	public void setFacebookAppId(String appId) {
+		SocializeUI.getInstance().setFacebookAppId(appId);
+	}
 }
