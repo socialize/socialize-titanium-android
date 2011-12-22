@@ -17,7 +17,7 @@ import android.app.Activity;
 
 import com.socialize.ui.SocializeUI;
 
-@Kroll.module(name="Socialize", id="com.socialize")
+@Kroll.module(name="socialize", id="com.socialize")
 public class SocializeModule extends KrollModule
 {
 	public SocializeModule(TiContext tiContext) {

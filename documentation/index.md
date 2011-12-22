@@ -1,8 +1,8 @@
-# socialize Module
+# Socialize Module
 
 ## Description
 
-TODO: Enter your module description here
+Wrapper for the Socialize Action Bar
 
 ## Accessing the socialize Module
 
@@ -12,28 +12,28 @@ To access this module from JavaScript, you would do the following:
 
 The socialize variable is a reference to the Module object.	
 
-## Reference
+## Example Use
 
-TODO: If your module has an API, you should document
-the reference here.
+The Socialize Action Bar for Android must be "wrapped" around an existing view.
+This is so it always pins itself to the bottom of the view.
 
-### ___PROJECTNAMEASIDENTIFIER__.function
+First set your socialize consumer key/secret:
 
-TODO: This is an example of a module function.
+	socialize.setSocializeCredentials("your_consumer_key", "your_consumer_secret");
+	
+Then (optionally) set your facebook app id:
 
-### ___PROJECTNAMEASIDENTIFIER__.property
+	socialize.setFacebookAppId("your_facebook_app_id");
+	
+	
+Wrap an existing view in the action bar with a given entity key:
 
-TODO: This is an example of a module property.
+	var someView = ... // This is your existing view.
 
-## Usage
+	var actionBar = socialize.showActionBar(someView, "http://www.getsocialize.com");
+	
+Add the wrapped view to the window instead of the original view
 
-TODO: Enter your usage example here
+	// win.add(someView); <-- Not this anymore
+	win.add(actionBar);
 
-## Author
-
-TODO: Enter your author name, email and other contact
-details you want to share here. 
-
-## License
-
-TODO: Enter your license/legal information here.
