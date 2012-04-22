@@ -7,7 +7,8 @@ import org.appcelerator.titanium.view.TiUIView;
 import android.app.Activity;
 import android.view.View;
 
-import com.socialize.ui.SocializeUI;
+import com.socialize.entity.Entity;
+import com.socialize.ui.actionbar.ActionBarView;
 
 public class SocializeActionBarView extends TiUIView {
 	
@@ -20,13 +21,15 @@ public class SocializeActionBarView extends TiUIView {
 		super(proxy);
 		this.activity = activity;
 		this.entityKey = entityKey;
-		this.parent = parent.getView(activity);
+		this.parent = parent.getOrCreateView();
 	}
 
 	@Override
 	public void processProperties(KrollDict dict) {
 		super.processProperties(dict);
-		view = SocializeUI.getInstance().showActionBar(activity, parent.getNativeView(), entityKey);
+		final Entity entity = Entity.newInstance(entityKey, "Socialize");
+
+		view = Socialize.getSocializeUI().showActionBar(activity, parent.getNativeView(), entity);
 		setNativeView(view);
 	}
 }

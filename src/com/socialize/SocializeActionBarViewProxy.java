@@ -1,11 +1,13 @@
 package com.socialize;
 
-import org.appcelerator.titanium.TiContext;
+//import org.appcelerator.titanium.TiContext;
 import org.appcelerator.titanium.proxy.TiViewProxy;
 import org.appcelerator.titanium.view.TiUIView;
+import org.appcelerator.kroll.annotations.Kroll;
 
 import android.app.Activity;
 
+@Kroll.proxy(creatableInModule = SocializeModule.class)
 public class SocializeActionBarViewProxy extends TiViewProxy {
 	
 	private String entityKey;
@@ -13,8 +15,8 @@ public class SocializeActionBarViewProxy extends TiViewProxy {
 	private SocializeActionBarView view;
 	private TiViewProxy parent;
 
-	public SocializeActionBarViewProxy(TiContext tiContext, TiViewProxy parent, String entityKey) {
-		super(tiContext);
+	public SocializeActionBarViewProxy(TiViewProxy parent, String entityKey) {
+		super();
 		this.entityKey = entityKey;
 		this.parent = parent;
 	}
