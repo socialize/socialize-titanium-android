@@ -1,4 +1,4 @@
-version: 1.0
+version: 1.1
 description: Socialize SDK for Titanium
 author: Socialize Inc.
 copyright: Copyright (c) 2011 Socialize Inc.
@@ -6,4 +6,5 @@ name: socialize
 moduleid: com.socialize
 guid: 0b2d9177-8f2e-404e-9b04-8603212f42ac
 platform: android
-minsdk: 1.7.5
+minsdk: 1.8.1
+apiversion: 2

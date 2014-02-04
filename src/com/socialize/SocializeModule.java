@@ -10,38 +10,37 @@ package com.socialize;
 
 import org.appcelerator.kroll.KrollModule;
 import org.appcelerator.kroll.annotations.Kroll;
-import org.appcelerator.titanium.TiContext;
 import org.appcelerator.titanium.proxy.TiViewProxy;
 
 import android.app.Activity;
 
-import com.socialize.ui.SocializeUI;
+import com.socialize.Socialize;
 
-@Kroll.module(name="socialize", id="com.socialize")
+@Kroll.module(name="Socialize", id="com.socialize")
 public class SocializeModule extends KrollModule
 {
-	public SocializeModule(TiContext tiContext) {
-		super(tiContext);
+	public SocializeModule() {
+		super();
 	}
 	
 	@Kroll.method
 	public SocializeActionBarViewProxy showActionBar(TiViewProxy parent, String entityKey) {
-		return new SocializeActionBarViewProxy(getTiContext(), parent, entityKey);
+		return new SocializeActionBarViewProxy(parent, entityKey);
 	}
 	
 	@Override
 	public void onDestroy(Activity activity) {
-		SocializeUI.getInstance().destroy(activity);
+		Socialize.getSocialize().destroy();
 		super.onDestroy(activity);
 	}
 
 	@Kroll.method
 	public void setSocializeCredentials(String consumerKey, String consumerSecret) {
-		SocializeUI.getInstance().setSocializeCredentials(consumerKey, consumerSecret);
+		Socialize.getSocialize().getConfig().setSocializeCredentials(consumerKey, consumerSecret);
 	}
 	
 	@Kroll.method
 	public void setFacebookAppId(String appId) {
-		SocializeUI.getInstance().setFacebookAppId(appId);
+		Socialize.getSocialize().getConfig().setFacebookAppId(appId);
 	}
 }
